@@ -26,10 +26,18 @@ int addEnvironmentEntry(const char *name, const char *value);
 int _setenv(const char *name, const char *value, int overwrite);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 ssize_t _getline(char **lineptr, size_t *n, int stream);
+/*char * _getline(void);*/
 char **_strtok(const char *lineptr, const char *delim, int *num_tokens);
+/*char *getToken(const char **str, const char *delimiters) ;*/
+/*char **tokenizeString(const char *str, const char *delimiters, int *num_tokens);*/
+/*char **__strtok(char *str, const char *delimiters);*/
+/*unsigned int check_delim(char c, const char *str);*/
+/*char *_strtok(char *str, const char *delim);*/
+/*char **parse_cmd(char *input);*/
 void shell_interactive_mode(void);
+void signal_handler(int signal_num);
 int execute_args(char **args, char *line);
-int new_process(char **args);
+int new_process(char **args, char *line);
 int get_path(char **args);
 char *build_path(char *token, char *value);
 void shell_non_interactive_mode(void);
@@ -43,13 +51,17 @@ int _strcmp(char *s1, char *s2);
 char *_strchr(const char *s, int c);
 int _atoi(const char *str);
 char *_strcat(char *dest, char *src);
+void *my_memset(void *s, int c,  unsigned int len);
+char *concat_all(char *name, char *sep, char *value);
 
-int _cd(char **args, char *line);
+int _cd(char **args, char *line, int *flag);
 int cd_home(void);
 int cd_dot(void);
 int cd_to(char **args);
-int _env(char **args, char *line);
-int my_exit(char **args, char *line);
+int _env(char **args, char *line, int *flag);
+int my_exit(char **args, char *line, int *flag);
+int my_setenv(char **args, char *line, int *flag);
+
 /**
  * struct Node - singly linked list
  * @data: string dynamically allocated

@@ -25,74 +25,43 @@ return (NULL);
 }
 
 /**
- *addEnvironmentEntry - Add a new environment variable entry
- * @name: The name of the environment variable
- * @value: The value of the environment variable
- *Return: 0 at success and -1 at fail
- */
-int addEnvironmentEntry(const char *name, const char *value)
-{
-char *new_env = NULL;
-char **new_environ = NULL;
-int env_count = 0, i = 0;
-size_t new_env_len = _strlen(name) + _strlen(value) + 2;
-new_env = (char *)malloc(new_env_len);
-if (new_env == NULL)
-{errno = ENOMEM;
-return (-1); }
-_strncpy(new_env, name, _strlen(name));
-_strncpy(new_env + _strlen(name), "=", 1);
-_strncpy(new_env + _strlen(name) + 1, value, _strlen(value));
-while (environ[env_count] != NULL)
-env_count++;
-new_environ = (char **)malloc((env_count + 2) * sizeof(char *));
-if (new_environ == NULL)
-{free(new_env);
-errno = ENOMEM;
-return (-1); }
-for (i = 0; i < env_count; i++)
-new_environ[i] = environ[i];
-new_environ[env_count] = new_env;
-new_environ[env_count + 1] = NULL;
-environ = new_environ;
-return (0);
-}
-
-/**
  * _setenv- Set or overwrite an environment variable
- * @name: The name of the environment variable
- * @value: The value of the environment variable
- * @overwrite: Flag to indicate whether to overwrite an existing variable
+ * @name: the tokenized command
+ * @value: input line
  **Return: 0 at success and -1 at fail
  */
-int _setenv(const char *name, const char *value, int overwrite)
+int my_setenv(char **args, char __attribute__((unused)) *line,
+int __attribute__((unused)) *flag)
 {
-char *existing_value = NULL, *equal_sign = NULL;
-int i;
-size_t name_len;
-if (name == NULL || value == NULL)
-{errno = EINVAL;
+int i = 0, j = 0, k = 0;
+if (args == NULL || args[1] == NULL ||  args[2] == NULL)
+{perror("setenv\n");
 return (-1); }
-existing_value = _getenv(name);
-if (existing_value != NULL)
-{
-if (overwrite == 0)
-return (0);
-else
-{
 for (i = 0; environ[i] != NULL; i++)
-{equal_sign = _strchr(environ[i], '=');
-if (equal_sign != NULL)
-{name_len = equal_sign - environ[i];
-if (_strncmp(environ[i], name, name_len) == 0 && name_len == _strlen(name))
-{free(existing_value);
-environ[i] = (char *)malloc(_strlen(name) + _strlen(value) + 2);
+{
+j = 0;
+if (args[1][j] == environ[i][j])
+{
+while (args[1][j])
+{
+if (args[1][j] != environ[i][j])
+break;
+j++; }
+if (args[1][j] == '\0')
+{
+k = 0;
+while (args[2][k])
+{
+environ[i][j + 1 + k] = args[2][k];
+k++; }
+environ[i][j + 1 + k] = '\0';
+return (0); }}}
 if (environ[i] == NULL)
-{errno = ENOMEM;
-return (-1); }
-_strncpy(environ[i], name, _strlen(name));
-_strncpy(environ[i] + _strlen(name), "=", 1);
-_strncpy(environ[i] + _strlen(name) + 1, value, _strlen(value));
-return (0); }}}}}
-return (addEnvironmentEntry(name, value));
+{
+environ[i] = concat_all(args[1], "=", args[2]);
+if (environ[i] == NULL)
+return (-1);
+environ[i + 1] = '\0';
+return (0);
+}
 }

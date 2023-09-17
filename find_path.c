@@ -13,8 +13,12 @@ char *cmd_path = NULL;
 Node *temp = NULL;
 Node *path_list = build_path_list();
 temp = path_list;
-if (temp == NULL)
-return (-1);
+if(temp == NULL)
+{
+for (i = 0; args[i] != NULL ; i++)
+free(args[i]);
+free(args);
+return (-1); }   
 
 while (temp != NULL)
 {
@@ -26,12 +30,17 @@ args[0] = (char *)malloc(sizeof(char) * _strlen(cmd_path));
 
 if (args[0] == NULL)
 {free(cmd_path);
-for (i = 0 ; args[i] != NULL ; i++)
+for (i = 1; args[i] != NULL ; i++)
 free(args[i]);
+free(args);
+deletelist(&path_list);
 return (-1);
 }
 
-_strcpy(args[0], cmd_path);
+for (i = 0 ; i < _strlen(cmd_path) ; i++)
+args[0][i] = 0;
+
+_strncpy(args[0], cmd_path, _strlen(cmd_path));
 free(cmd_path);
 deletelist(&path_list);
 return (0);
@@ -60,11 +69,13 @@ char *build_path(char *token, char *value)
 
 char *full_path = NULL;
 size_t len = 0;
+int i = 0;
 len = _strlen(value) + _strlen(token) + 2;
 
 full_path = (char *)malloc(sizeof(char) * len);
 
-memset(full_path, 0, len);
+for(i = 0; i < len ; i++)
+full_path[i] = 0;   
 
 full_path = _strcat(full_path, value);
 full_path = _strcat(full_path, "/");

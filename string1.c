@@ -26,19 +26,29 @@ return (0);
 
 /**
  * _strchr - Locate first occurance of char in a string
- * @s: The string to search
- * @c: The character to find
- *Return: pointer to first occurance of char of NULL
+ * @name:first string
+ * @sep:second string
+ *@value: third string 
+ *Return: pointer to full concatenated
  */
-char *_strchr(const char *s, int c)
+char *concat_all(char *name, char *sep, char *value)
 {
-while (*s != '\0')
-{
-if (*s == c)
-return ((char *)s);
-s++;
-}
+int i = 0, k = 0;
+char *res = NULL;
+res = malloc(_strlen(name) + _strlen(sep) + _strlen(value) + 1);
+if (res == NULL)
 return (NULL);
+for (i = 0; name[i]; i++)
+res[i] = name[i];
+k = i;
+for (i = 0; sep[i]; i++)
+res[k + i] = sep[i];
+k = k + i;
+for (i = 0; value[i]; i++)
+res[k + i] = value[i];
+k = k + i;
+res[k] = '\0';
+return (res);
 }
 
 /**
@@ -95,5 +105,21 @@ dest++;
 src++;
 }
 *dest = '\0';
+return (s);
+}
+
+/**
+ *my_memset - function to fill n bytes of memory with a value
+ *@s:pointer to memory to be filled
+ *@c: value to be filled with
+ *@len:number of bytes to be filled
+ */
+void *my_memset(void *s, int c,  unsigned int len)
+{
+unsigned char* p = s;
+while (len--)
+{
+*p++ = (unsigned char)c;
+}
 return (s);
 }

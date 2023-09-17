@@ -7,7 +7,8 @@
  *Return: 0 at success and -1 at fail
  */
 
-int _env(char __attribute__((unused))**args, char __attribute__((unused))*line)
+int _env(char __attribute__((unused)) **args, char  __attribute__ ((unused)) *line,
+int __attribute__((unused)) *flag)
 {
 
 int i = 0, ret = 0;

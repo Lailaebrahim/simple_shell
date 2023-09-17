@@ -57,10 +57,9 @@ char *_strcpy(char *dest, const char *src)
 int i = 0;
 if (dest == NULL || src == NULL)
 return (NULL);
-while (src[i] != '\0')
+for (i = 0; (i < _strlen( src)) && src[i] != '\0'; i++)
 {
 dest[i] = src[i];
-i++;
 }
 dest[i] = '\0';
 return (dest);

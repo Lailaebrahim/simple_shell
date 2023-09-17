@@ -10,6 +10,7 @@ int main(int __attribute__((unused)) argc, char __attribute__((unused)) **argv)
 {
 if (isatty(STDIN_FILENO) == 1)
 {
+signal(SIGINT, signal_handler);
 shell_interactive_mode();
 }
 else
@@ -33,12 +34,13 @@ while (1)
 {
 prompt();
 rd = _getline(&line, &n, STDIN_FILENO);
+fflush(stdin);
 if (rd == 0)
 {
 exit(EXIT_SUCCESS); }
 
 if (rd == -1)
-{
+{if (line != NULL)
 free(line);
 perror("error while reading the line from stdin\n");
 exit(EXIT_FAILURE); }
@@ -46,6 +48,7 @@ exit(EXIT_FAILURE); }
 args = _strtok(line, delim, &num_tokens);
 if (args == NULL)
 {
+if (line != NULL)
 free(line);
 exit(EXIT_FAILURE); }
 
@@ -77,8 +80,7 @@ free(line);
 exit(EXIT_SUCCESS); }
 
 if (rd == -1)
-{
-if (line != NULL)
+{if (line != NULL)
 free(line);
 perror("error while reading the line from file\n");
 exit(EXIT_FAILURE); }
@@ -94,5 +96,19 @@ status = execute_args(args, line);
 if (status == -1)
 perror("failed to execute\n");
 
+}
+}
+
+
+/**
+ * signal_handler - checks if Ctrl C is pressed
+ * @signal_num: int
+ */
+void signal_handler(int signal_num)
+{
+if (signal_num == SIGINT)
+{
+_print("\n");
+prompt();
 }
 }

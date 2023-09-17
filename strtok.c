@@ -46,6 +46,8 @@ return (NULL);
 tokens = (char **)malloc((*num_tokens + 1) * sizeof(char *));
 if (tokens == NULL)
 return (NULL);
+for (i = 0; i < (*num_tokens + 1); i++)
+tokens[i] = 0;
 token_start = str;
 while (*token_start)
 {
@@ -63,6 +65,8 @@ for (i = 0; i < token_index; i++)
 free(tokens[i]);
 free(tokens);
 return (NULL); }
+for (i = 0; i < (token_length + 1) ; i++)
+tokens[token_index][i] = 0;
 _strncpy(tokens[token_index++], token_start, token_length);
 token_start = token_end; }}
 tokens[*num_tokens] = NULL;
