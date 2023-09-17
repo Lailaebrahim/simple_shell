@@ -4,7 +4,8 @@
  * my_exit - exit of the program with the status
  * @args: tokenized command line
  *@line: input line
- * Return: 0 at sucess, or status in the arguments
+ *@flag: indicate that a new environment variable is set
+ *Return: 0 at sucess, or status in the arguments
  */
 int my_exit(char **args, char *line, int *flag)
 {
@@ -15,7 +16,7 @@ n = _atoi(args[1]);
 if (n <= -1)
 n = 2;
 }
-for(i = 0; args[i] != NULL; i++)
+for (i = 0; args[i] != NULL; i++)
 {free(args[i]);
 args[i] = NULL; }
 free(args);

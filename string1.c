@@ -25,10 +25,10 @@ return (0);
 }
 
 /**
- * _strchr - Locate first occurance of char in a string
+ * concat_all - concatenate three strings
  * @name:first string
  * @sep:second string
- *@value: third string 
+ *@value: third string
  *Return: pointer to full concatenated
  */
 char *concat_all(char *name, char *sep, char *value)
@@ -105,21 +105,5 @@ dest++;
 src++;
 }
 *dest = '\0';
-return (s);
-}
-
-/**
- *my_memset - function to fill n bytes of memory with a value
- *@s:pointer to memory to be filled
- *@c: value to be filled with
- *@len:number of bytes to be filled
- */
-void *my_memset(void *s, int c,  unsigned int len)
-{
-unsigned char* p = s;
-while (len--)
-{
-*p++ = (unsigned char)c;
-}
 return (s);
 }

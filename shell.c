@@ -40,7 +40,8 @@ if (rd == 0)
 exit(EXIT_SUCCESS); }
 
 if (rd == -1)
-{if (line != NULL)
+{
+if (line != NULL)
 free(line);
 perror("error while reading the line from stdin\n");
 exit(EXIT_FAILURE); }
@@ -80,7 +81,8 @@ free(line);
 exit(EXIT_SUCCESS); }
 
 if (rd == -1)
-{if (line != NULL)
+{
+if (line != NULL)
 free(line);
 perror("error while reading the line from file\n");
 exit(EXIT_FAILURE); }

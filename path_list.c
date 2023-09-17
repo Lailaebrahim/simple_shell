@@ -9,7 +9,7 @@ Node *build_path_list(void)
 Node *temp = NULL;
 Node *list = NULL;
 char *path = _getenv("PATH");
- int num_tokens = 0, i = 0, j = 0;
+int num_tokens = 0, i = 0, j = 0;
 char **tokens = NULL;
 if (path == NULL)
 {

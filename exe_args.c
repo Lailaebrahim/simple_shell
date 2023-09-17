@@ -10,45 +10,40 @@ int execute_args(char **args, char *line)
 {
 unsigned long int i = 0;
 int ret = 0;
-static int flag = 0;
+static int flag;
 char *builtin_func_list[4] = {"cd", "env", "exit", "setenv"};
-int (*builtin_func[4])(char **, char *, int *flag) = {&_cd, &_env, &my_exit, &my_setenv};
+int (*builtin_func[4])(char **, char *, int *flag) = {&_cd, &_env,
+&my_exit, &my_setenv};
 if (args == NULL || args[0] == NULL)
 return (-1);
-
 for (i = 0; i < 4; i++)
 {
 if (_strcmp(args[0], builtin_func_list[i]) == 0)
 {
 ret = (*builtin_func[i])(args, line, &flag);
-if(_strcmp(args[0], "setenv") == 0)
-flag ++;
+if (_strcmp(args[0], "setenv") == 0)
+flag++;
 for (i = 0; args[i] != NULL; i++)
-{
-free(args[i]);
+{free(args[i]);
 args[i] = NULL; }
 free(args);
 args = NULL;
 return (ret);
 }
 }
-
 ret = new_process(args, line);
 if (ret == 0)
 {
 for (i = 0; args[i] != NULL; i++)
-{
-free(args[i]);
+{free(args[i]);
 args[i] = NULL; }
 free(args);
-args = NULL;
-}
-
-return (ret);
-}
+args = NULL; }
+return (ret); }
 /**
  *new_process - function to execute executable command
  *@args: pointer to tokenized comamnd
+ *@line:pointer to input line
  *Return: 0 at success , -1 at fail
  */
 
@@ -76,7 +71,6 @@ free(args[i]);
 free(args);
 perror("Failed to execute in child process");
 return (-1); }}
-
 else if (pid < 0)
 {
 perror("error in new_process: forking");
@@ -86,13 +80,10 @@ free(args);
 free(line);
 line = NULL;
 exit(EXIT_FAILURE); }
-
 else
 {
 do {
 waitpid(pid, &status, WUNTRACED);
 } while (!WIFEXITED(status) && !WIFSIGNALED(status));
-
 }
-return (0);
-}
+return (0); }

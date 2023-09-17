@@ -25,13 +25,14 @@ return (NULL);
 }
 
 /**
- * _setenv- Set or overwrite an environment variable
- * @name: the tokenized command
- * @value: input line
- **Return: 0 at success and -1 at fail
+ * my_setenv- Set or overwrite an environment variable
+ * @args: the tokenized command
+ * @line: input line
+ *@flag: to indicate if a new environment variable is set
+ *Return: 0 at success and -1 at fail
  */
-int my_setenv(char **args, char __attribute__((unused)) *line,
-int __attribute__((unused)) *flag)
+int my_setenv(char **args, char __attribute__((unused))*line
+	      , int __attribute__((unused))*flag)
 {
 int i = 0, j = 0, k = 0;
 if (args == NULL || args[1] == NULL ||  args[2] == NULL)
@@ -64,4 +65,5 @@ return (-1);
 environ[i + 1] = '\0';
 return (0);
 }
+return (-1);
 }

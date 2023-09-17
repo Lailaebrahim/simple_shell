@@ -4,9 +4,11 @@
  * _cd - changes the working dir of the current shell executon env
  * @args: target directory
  *@line: input line
+ *@flag: a flag to indicate if env changed
  * Return: 0 one success, -1 otherwise.
  */
-int _cd(char **args , char  __attribute__ ((unused)) *line, int __attribute__((unused)) *flag)
+int _cd(char **args, char  __attribute__((unused))*line
+	, int __attribute__((unused))*flag)
 {
 if (args[1] == NULL)
 {

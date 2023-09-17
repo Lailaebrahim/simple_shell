@@ -15,12 +15,10 @@ size_t i = 0;
 if (lineptr == NULL || n == NULL || stream == -1)
 return (-1);
 if (*lineptr == NULL || *n == 0)
-{
-*n = BUFFER_SIZE;
+{*n = BUFFER_SIZE;
 *lineptr = (char *)malloc(*n);
 if (*lineptr == NULL)
-return (-1);
-}
+return (-1); }
 for (i = 0 ; ; i++)
 {
 if (i > *n)

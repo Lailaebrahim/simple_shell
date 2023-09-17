@@ -27,8 +27,7 @@ return (0);
  */
 char **_strtok(const char *str, const char *delimiters, int *num_tokens)
 {const char *token_start = str, *token_end = NULL;
-size_t token_length = 0;
-int i = 0, token_index = 0;
+size_t token_length = 0, i = 0, token_index = 0;
 char **tokens = NULL;
 if (str == NULL || delimiters == NULL)
 return (NULL);
@@ -46,7 +45,7 @@ return (NULL);
 tokens = (char **)malloc((*num_tokens + 1) * sizeof(char *));
 if (tokens == NULL)
 return (NULL);
-for (i = 0; i < (*num_tokens + 1); i++)
+for (i = 0; i < (size_t)(*num_tokens + 1); i++)
 tokens[i] = 0;
 token_start = str;
 while (*token_start)

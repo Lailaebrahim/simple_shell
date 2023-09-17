@@ -54,10 +54,10 @@ return (ret);
  */
 char *_strcpy(char *dest, const char *src)
 {
-int i = 0;
+size_t i = 0;
 if (dest == NULL || src == NULL)
 return (NULL);
-for (i = 0; (i < _strlen( src)) && src[i] != '\0'; i++)
+for (i = 0; (i < _strlen(src)) && src[i] != '\0'; i++)
 {
 dest[i] = src[i];
 }
