@@ -76,8 +76,6 @@ while (1)
 rd = _getline(&line, &n, STDIN_FILENO);
 if (rd == 0)
 {
-if (line != NULL)
-free(line);
 exit(EXIT_SUCCESS); }
 
 if (rd == -1)

@@ -27,8 +27,9 @@ return (0);
  */
 char **_strtok(const char *str, const char *delimiters, int *num_tokens)
 {const char *token_start = str, *token_end = NULL;
-size_t token_length = 0, i = 0, token_index = 0;
 char **tokens = NULL;
+size_t token_length = 0;
+int token_index = 0;
 if (str == NULL || delimiters == NULL)
 return (NULL);
 *num_tokens = 0;
@@ -45,8 +46,7 @@ return (NULL);
 tokens = (char **)malloc((*num_tokens + 1) * sizeof(char *));
 if (tokens == NULL)
 return (NULL);
-for (i = 0; i < (size_t)(*num_tokens + 1); i++)
-tokens[i] = 0;
+fill_arr_with_zero_2(tokens, (*num_tokens + 1));
 token_start = str;
 while (*token_start)
 {
@@ -59,14 +59,49 @@ token_end++;
 token_length = token_end - token_start;
 tokens[token_index] = (char *)malloc(token_length + 1);
 if (tokens[token_index] == NULL)
-{
-for (i = 0; i < token_index; i++)
-free(tokens[i]);
-free(tokens);
+{free_arr_of_strings(tokens, token_index);
 return (NULL); }
-for (i = 0; i < (token_length + 1) ; i++)
-tokens[token_index][i] = 0;
+fill_arr_with_zero(tokens[token_index], (token_length + 1));
 _strncpy(tokens[token_index++], token_start, token_length);
-token_start = token_end; }}
+token_start = token_end;
+}
+}
 tokens[*num_tokens] = NULL;
 return (tokens); }
+
+/**
+ *fill_arr_with_zero - function to fill a string with zeros
+ *@arr: pointer to string
+ *@len: length of string
+ */
+void fill_arr_with_zero(char *arr, int len)
+{
+int i;
+for (i = 0; i < len; i++)
+arr[i] = 0;
+}
+
+/**
+ *fill_arr_with_zero_2 - function to fill a string with zeros
+ *@arr: pointer to string
+ *@len: length of string
+ */
+void fill_arr_with_zero_2(char **arr, int len)
+{
+int i;
+for (i = 0; i < len; i++)
+arr[i] = 0;
+}
+
+/**
+ * free_arr_of_strings - function to free an array of stings
+ *@args: pointer to string
+ *@len: length of string
+ */
+void  free_arr_of_strings(char **args, int len)
+{
+int i;
+for (i = 0; i < len; i++)
+free(args[i]);
+free(args);
+}

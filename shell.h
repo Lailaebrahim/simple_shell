@@ -22,18 +22,9 @@ extern char **environ;
 
 void prompt(void);
 char *_getenv(const char *name);
-int addEnvironmentEntry(const char *name, const char *value);
-int _setenv(const char *name, const char *value, int overwrite);
 void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 ssize_t _getline(char **lineptr, size_t *n, int stream);
-/*char * _getline(void);*/
 char **_strtok(const char *lineptr, const char *delim, int *num_tokens);
-/*char *getToken(const char **str, const char *delimiters) ;*/
-/*char **tokenizeString(const char *str, const char *delimiters, int *num_tokens);*/
-/*char **__strtok(char *str, const char *delimiters);*/
-/*unsigned int check_delim(char c, const char *str);*/
-/*char *_strtok(char *str, const char *delim);*/
-/*char **parse_cmd(char *input);*/
 void shell_interactive_mode(void);
 void signal_handler(int signal_num);
 int execute_args(char **args, char *line);
@@ -48,11 +39,12 @@ char *_strdup(const char *str);
 char *_strcpy(char *dest, const char *src);
 int _strncmp(const char *s1, const char *s2, size_t n);
 int _strcmp(char *s1, char *s2);
-char *_strchr(const char *s, int c);
 int _atoi(const char *str);
 char *_strcat(char *dest, char *src);
-void *my_memset(void *s, int c,  unsigned int len);
 char *concat_all(char *name, char *sep, char *value);
+void fill_arr_with_zero(char *arr, int len);
+void fill_arr_with_zero_2(char **arr, int len);
+void  free_arr_of_strings(char **args, int len);
 
 int _cd(char **args, char *line, int *flag);
 int cd_home(void);
