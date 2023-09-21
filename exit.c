@@ -34,7 +34,7 @@ free(environ[i - *flag]);
 }
 }
 
-if (n = 2)
+if (n == 2)
 {
 perror(_getenv("_"));
 perror(": 1:");
@@ -43,7 +43,6 @@ perror("Illegal number: ");
 perror(args[1]);
 perror("\n");
 }
-     
 exit(n);
 }
 
