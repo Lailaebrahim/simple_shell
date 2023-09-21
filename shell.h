@@ -14,7 +14,7 @@
 #include <limits.h>
 
 
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 2000
 
 #define _print(c) (write(STDOUT_FILENO, c, _strlen(c)))
 
