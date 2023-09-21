@@ -13,7 +13,7 @@ int ret = 0;
 static int flag;
 char *builtin_func_list[5] = {"cd", "env", "exit", "setenv",
 "unsetenv"};
- int (*builtin_func[5])(char **, char *, int *flag) = {&cd, &_env,
+int (*builtin_func[5])(char **, char *, int *flag) = {&cd, &_env,
 						      &my_exit, &my_setenv, &my_unsetenv};
 if (args == NULL || args[0] == NULL)
 return (-1);
