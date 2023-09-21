@@ -34,17 +34,17 @@ return (ret);
 }
 }
 ret = new_process(args, line);
+if (ret == -1)
+status = -1;
+
 if (ret == 0)
 {
 for (i = 0; args[i] != NULL; i++)
 {free(args[i]);
 args[i] = NULL; }
 free(args);
-args = NULL;
-status = 0; }
+args = NULL; }
 
-if (ret == -1)
-status = -1;
 return (ret); }
 /**
  *new_process - function to execute executable command
