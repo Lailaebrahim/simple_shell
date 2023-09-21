@@ -36,7 +36,7 @@ int my_setenv(char **args, char __attribute__((unused))*line
 {
 int i = 0, j = 0, k = 0;
 if (args == NULL || args[1] == NULL ||  args[2] == NULL)
-{perror("setenv\n");
+{
 return (-1); }
 for (i = 0; environ[i] != NULL; i++)
 {
@@ -68,7 +68,6 @@ return (-1);
 environ[i + 1] = '\0';
 return (0);
 }
-perror("setenv failed\n");
 return (-1);
 }
 
@@ -115,6 +114,6 @@ return (0);
 }
 }
 }
-perror("unsetenv failed\n");
+
 return (-1);
 }
