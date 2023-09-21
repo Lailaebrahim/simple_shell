@@ -29,10 +29,12 @@ return (NULL);
  * @args: the tokenized command
  * @line: input line
  *@flag: to indicate if a new environment variable is set
+ *@status: to indicate failed execute
  *Return: 0 at success and -1 at fail
  */
 int my_setenv(char **args, char __attribute__((unused))*line
-	      , int __attribute__((unused))*flag)
+	      , int __attribute__((unused))*flag
+	      , int __attribute__((unused))*status)
 {
 int i = 0, j = 0, k = 0;
 if (args == NULL || args[1] == NULL ||  args[2] == NULL)
@@ -78,10 +80,11 @@ return (-1);
  * @args: the tokenized command
  * @line: input line
  *@flag: to indicate if a new environment variable is set
+ *@status: to indicate failed execute
  *Return: 0 at success and -1 at fail
  */
 int my_unsetenv(char **args, char __attribute__((unused))*line
-	      , int *flag)
+		, int *flag, int __attribute__((unused))*status)
 {
 int i, j;
 if (args[1] == NULL  || args[2] != NULL)

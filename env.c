@@ -5,11 +5,13 @@
  *@args : pointer to tokenized string
  *@line: input line
  *@flag: flag to indicate a new environment variable
+ *@status: indicate failed execute
  *Return: 0 at success and -1 at fail
  */
 
 int _env(char __attribute__((unused))**args, char  __attribute__((unused))*line
-	 , int __attribute__((unused))*flag)
+	 , int __attribute__((unused))*flag
+	 , int  __attribute__((unused))*status)
 {
 
 int i = 0, ret = 0;

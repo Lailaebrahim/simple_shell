@@ -11,9 +11,10 @@ int execute_args(char **args, char *line)
 unsigned long int i = 0;
 int ret = 0;
 static int flag;
+static int status;
 char *builtin_func_list[5] = {"cd", "env", "exit", "setenv",
 "unsetenv"};
-int (*builtin_func[5])(char **, char *, int *flag) = {&_cd, &_env,
+int (*builtin_func[5])(char **, char *, int *, int *) = {&_cd, &_env,
 						      &my_exit, &my_setenv, &my_unsetenv};
 if (args == NULL || args[0] == NULL)
 return (-1);
@@ -21,7 +22,7 @@ for (i = 0; i < 5; i++)
 {
 if (_strcmp(args[0], builtin_func_list[i]) == 0)
 {
-ret = (*builtin_func[i])(args, line, &flag);
+ret = (*builtin_func[i])(args, line, &flag, &status);
 if (_strcmp(args[0], "setenv") == 0)
 flag++;
 for (i = 0; args[i] != NULL; i++)
@@ -39,7 +40,11 @@ for (i = 0; args[i] != NULL; i++)
 {free(args[i]);
 args[i] = NULL; }
 free(args);
-args = NULL; }
+args = NULL;
+status = 0; }
+
+if (ret == -1)
+status = -1;
 return (ret); }
 /**
  *new_process - function to execute executable command
@@ -47,7 +52,6 @@ return (ret); }
  *@line:pointer to input line
  *Return: 0 at success , -1 at fail
  */
-
 int new_process(char **args, char *line)
 {
 pid_t pid = 0;

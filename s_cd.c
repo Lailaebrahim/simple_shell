@@ -5,10 +5,12 @@
  * @args: target directory
  *@line: input line
  *@flag: flag to indicate changed environment
+ *@status: to indicate failed execute
  * Return: 0 one success, -1 otherwise.
  */
 int _cd(char **args, char  __attribute__((unused))*line
-	, int __attribute__((unused))*flag)
+	, int __attribute__((unused))*flag
+	, int __attribute__((unused))*status)
 {
 if (args[1] == NULL)
 {

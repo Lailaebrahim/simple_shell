@@ -46,14 +46,11 @@ void fill_arr_with_zero(char *arr, int len);
 void fill_arr_with_zero_2(char **arr, int len);
 void  free_arr_of_strings(char **args, int len);
 
-int _cd(char **args, char *line, int *flag);
-int cd_home(void);
-int cd_dot(void);
-int cd_to(char **args);
-int _env(char **args, char *line, int *flag);
-int my_exit(char **args, char *line, int *flag);
-int my_setenv(char **args, char *line, int *flag);
-int my_unsetenv(char **args, char *line, int *flag);
+int _cd(char **args, char *line, int *flag, int *status);
+int _env(char **args, char *line, int *flag, int *status);
+int my_exit(char **args, char *line, int *flag, int *status);
+int my_setenv(char **args, char *line, int *flag, int *status);
+int my_unsetenv(char **args, char *line, int *flag, int *status);
 
 /**
  * struct Node - singly linked list

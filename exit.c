@@ -5,10 +5,12 @@
  * @args: tokenized command line
  *@line: input line
  *@flag: indicate that a new environment variable is set
+ *@status: to indicate failed execute
  *Return: 0 at sucess, or status in the arguments
  */
-int my_exit(char **args, char *line, int *flag)
+int my_exit(char **args, char *line, int *flag, int *status)
 {
+
 int i = 0, n = 0;
 if (args[1] != NULL)
 {
@@ -34,15 +36,8 @@ free(environ[i - *flag]);
 }
 }
 
-if (n == 2)
-{
-perror(_getenv("_"));
-perror(": 1:");
-perror(args[0]);
-perror("Illegal number: ");
-perror(args[1]);
-perror("\n");
-}
+if (*status == -1)
+n = 2;
 exit(n);
 }
 
