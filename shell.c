@@ -37,6 +37,8 @@ rd = _getline(&line, &n, STDIN_FILENO);
 fflush(stdin);
 if (rd == 0)
 {
+if (status == -1)
+{exit(EXIT_FAILURE); }
 exit(EXIT_SUCCESS); }
 
 if (rd == -1)
@@ -53,8 +55,6 @@ free(line);
 exit(EXIT_FAILURE); }
 
 status = execute_args(args, line);
-if (status == -1)
-status = -1;
 
 }
 /*end of while */
@@ -75,13 +75,15 @@ while (1)
 rd = _getline(&line, &n, STDIN_FILENO);
 if (rd == 0)
 {
+if (status == -1)
+{exit(EXIT_FAILURE); }
+
 exit(EXIT_SUCCESS); }
 
 if (rd == -1)
 {
 if (line != NULL)
 free(line);
-perror("error while reading the line from file\n");
 exit(EXIT_FAILURE); }
 
 args = _strtok(line, delim, &num_tokens);
@@ -92,8 +94,6 @@ free(line);
 exit(EXIT_FAILURE); }
 
 status = execute_args(args, line);
-if (status == -1)
-status = -1;
 }
 }
 
