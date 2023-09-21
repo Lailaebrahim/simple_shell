@@ -43,7 +43,6 @@ if (rd == -1)
 {
 if (line != NULL)
 free(line);
-perror("error while reading the line from stdin\n");
 exit(EXIT_FAILURE); }
 
 args = _strtok(line, delim, &num_tokens);
@@ -94,8 +93,8 @@ exit(EXIT_FAILURE); }
 
 status = execute_args(args, line);
 if (status == -1)
-perror("failed to execute\n");
-
+status = -1;
+ 
 }
 }
 
