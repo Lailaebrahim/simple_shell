@@ -11,13 +11,13 @@ int execute_args(char **args, char *line)
 unsigned long int i = 0;
 int ret = 0;
 static int flag;
-char *builtin_func_list[4] = {"env", "exit", "setenv",
+char *builtin_func_list[5] = {"cd", "env", "exit", "setenv",
 "unsetenv"};
-int (*builtin_func[4])(char **, char *, int *flag) = {&_env,
+ int (*builtin_func[5])(char **, char *, int *flag) = {&cd, &_env,
 						      &my_exit, &my_setenv, &my_unsetenv};
 if (args == NULL || args[0] == NULL)
 return (-1);
-for (i = 0; i < 4; i++)
+for (i = 0; i < 5; i++)
 {
 if (_strcmp(args[0], builtin_func_list[i]) == 0)
 {
