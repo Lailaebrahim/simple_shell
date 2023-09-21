@@ -55,7 +55,7 @@ exit(EXIT_FAILURE); }
 
 status = execute_args(args, line);
 if (status == -1)
-perror("failed to execute\n");
+status = -1;
 
 }
 /*end of while */

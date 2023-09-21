@@ -11,9 +11,10 @@ int execute_args(char **args, char *line)
 unsigned long int i = 0;
 int ret = 0;
 static int flag;
-char *builtin_func_list[4] = {"cd", "env", "exit", "setenv"};
-int (*builtin_func[4])(char **, char *, int *flag) = {&_cd, &_env,
-&my_exit, &my_setenv};
+char *builtin_func_list[4] = {"env", "exit", "setenv",
+"unsetenv"};
+int (*builtin_func[4])(char **, char *, int *flag) = {&_env,
+						      &my_exit, &my_setenv, &my_unsetenv};
 if (args == NULL || args[0] == NULL)
 return (-1);
 for (i = 0; i < 4; i++)
@@ -56,7 +57,7 @@ if (_strncmp(args[0], "./", 2) != 0 && _strncmp(args[0], "/", 1) != 0)
 {ret = get_path(args);
 if (ret == -1)
 {
-perror("inside new process failed to find path\n");
+perror(_getenv("_"));
 return (-1); }
 }
 
@@ -69,11 +70,11 @@ if (execve(args[0], args, environ) == -1)
 for (i = 0 ; args[i] != NULL ; i++)
 free(args[i]);
 free(args);
-perror("Failed to execute in child process");
+perror(_getenv("_"));
 return (-1); }}
 else if (pid < 0)
 {
-perror("error in new_process: forking");
+perror(_getenv("_"));
 for (i = 0 ; args[i] != NULL ; i++)
 free(args[i]);
 free(args);

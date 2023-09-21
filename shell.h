@@ -53,6 +53,7 @@ int cd_to(char **args);
 int _env(char **args, char *line, int *flag);
 int my_exit(char **args, char *line, int *flag);
 int my_setenv(char **args, char *line, int *flag);
+int my_unsetenv(char **args, char *line, int *flag);
 
 /**
  * struct Node - singly linked list

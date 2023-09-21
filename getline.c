@@ -35,7 +35,6 @@ if (i == 0)
 {
 free(*lineptr);
 *lineptr = NULL;
-perror("EOF\n");
 return (0); }
 else
 {
