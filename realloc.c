@@ -19,28 +19,25 @@ return (NULL);
 
 if (new_size == old_size)
 return (ptr);
- 
+
 p = malloc(new_size);
 if (p == NULL)
 return (NULL);
 
 fill_arr_with_zero(p, new_size);
 
- if (new_size < old_size)
-   {
-     for (i = 0; i < new_size; i++)
-       {
-	 p[i] = ((char *)ptr)[i];
-       }
-   }
+if (new_size < old_size)
+{
+for (i = 0; i < new_size; i++)
+p[i] = ((char *)ptr)[i];
+}
 
- else
-   {
-     for (i = 0; i < old_size; i++)
-       {
-	 p[i] = ((char *)ptr)[i];
-       }
-   }
+else
+{
+for (i = 0; i < old_size; i++)
+p[i] = ((char *)ptr)[i];
+}
+
 free(ptr);
 
 return (p);
