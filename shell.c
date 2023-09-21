@@ -29,7 +29,7 @@ char **args = NULL;
 int status = 0, num_tokens = 0;
 size_t n = 0;
 ssize_t rd = 0;
-char *delim = " ";
+char *delim = " \t\r\n\a\"";
 while (1)
 {
 prompt();
@@ -69,7 +69,7 @@ char **args = NULL;
 int status = 0, num_tokens = 0;
 size_t n = 0;
 ssize_t rd = 0;
-char *delim = " ";
+char *delim = " \t\r\n\a\"";
 while (1)
 {
 rd = _getline(&line, &n, STDIN_FILENO);
